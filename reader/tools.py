@@ -7,16 +7,14 @@ import os
 import win32gui
 import win32ui
 from ctypes import windll
-import settings
-import models
-
-
+import reader.settings as settings
+import reader.models as models
 
 def readPlayerCards(filename: str) -> list:
     cards = []
 
     cards_diff = 37
-    card1 = [285, 296, 298, 312]
+    card1 = [255, 396, 298, 412]
     card2 = [285+cards_diff, 296+cards_diff, 298, 312]
 
     image = cv2.imread(filename)
@@ -25,8 +23,11 @@ def readPlayerCards(filename: str) -> list:
     card1 = image[card1[2]:card1[3], card1[0]:card1[1]]
     card2 = image[card2[2]:card2[3], card2[0]:card2[1]]
 
+    cv2.imwrite('card1.png', card1)
+
     # if card not on table yet
     if emptyCard(card2):
+        print("empty")
         pass
     else:
         cards.append(cardInfo(card1))

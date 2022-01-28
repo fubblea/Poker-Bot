@@ -1,5 +1,5 @@
-import tools
-import models
+import reader.tools as tools
+import reader.models as models
 import os
 import cv2
 import threading
@@ -12,13 +12,13 @@ class PokerBot:
 
     def checkGameState(self) -> str:
         if not len(self.tableCards):
-            return "Prefloop"
+            return "Preflop"
         elif len(self.tableCards) == 4:
             return "Turn"
         elif len(self.tableCards) == 5:
             return "River"
         else:
-            return "Floop"
+            return "Flop"
 
     def readData(self, screenshot):
         self.tableCards = tools.readTableCards(screenshot.filename)

@@ -9,6 +9,7 @@ opencv-python = "*"
 pillow = "*"
 pytesseract = "*"
 pywin32 = "*"
+tesseract = "*"
 
 [dev-packages]
 
