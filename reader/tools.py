@@ -40,13 +40,13 @@ def readTableCards(filename: str) -> list:
     cards = []
 
     # y position for cards on table don't change
-    cards_y1, cards_y2 = 224, 256
+    cards_y1, cards_y2 = 210, 234
 
     # x changes by 39 px right
     cards_diff = 39
     
     # hardcoded card 1 x position
-    table_cards = [237, 260]
+    table_cards = [239, 260]
 
     # hardcoded floop, turn and river positions
     for i in range(1,5):
@@ -64,7 +64,7 @@ def readTableCards(filename: str) -> list:
         else:
             card = image[cards_y1:cards_y2, table_cards[i]:table_cards[i+1]]
 
-        cv2.imwrite(f"card{i}.png", card)
+        # cv2.imwrite(f"card{i}.png", card)
         # if card not on table yet
         if not emptyCard(card):
             cards.append(cardInfo(card))
