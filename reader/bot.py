@@ -21,6 +21,8 @@ class PokerBot:
             return "Flop"
 
     def readData(self, screenshot):
+        # TODO Fix detection of hearts and queens
+
         self.tableCards = tools.readTableCards(screenshot.filename)
         self.playerCards = tools.readPlayerCards(screenshot.filename)
         self.gameState = self.checkGameState()

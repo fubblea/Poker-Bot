@@ -14,7 +14,7 @@ def readPlayerCards(filename: str) -> list:
     cards = []
 
     cards_diff = 37
-    card1 = [286, 310, 332, 350]
+    card1 = [300, 316, 335, 357]
     card2 = [card1[0]+cards_diff, card1[1]+cards_diff, card1[2], card1[3]]
 
     image = cv2.imread(filename)
@@ -65,6 +65,7 @@ def readTableCards(filename: str) -> list:
             card = image[cards_y1:cards_y2, table_cards[i]:table_cards[i+1]]
 
         # cv2.imwrite(f"card{i}.png", card)
+
         # if card not on table yet
         if not emptyCard(card):
             cards.append(cardInfo(card))

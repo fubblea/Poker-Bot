@@ -3,4 +3,5 @@ import time
 
 bot = MultiBot()
 
-bot.run()
+while 1:
+    bot.run()
