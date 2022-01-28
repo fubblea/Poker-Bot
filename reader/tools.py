@@ -68,8 +68,6 @@ def readTableCards(filename: str) -> list:
         if not emptyCard(card):
             cards.append(cardInfo(card))
 
-    print(cards)
-
     return cards
 
 
