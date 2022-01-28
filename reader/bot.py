@@ -40,7 +40,7 @@ class ChangesHandler:
         self.tableName = tableName
     
     def check(self, bot: PokerBot):
-        if self.gameState != bot.gameState or self.playerCards != bot.playerCards or self.tableCards != bot.tableCards:
+        if self.gameState != bot.gameState or self.playerCards != bot.playerCards or self.tableCards != bot.tableCards or self.potSize != bot.potSize:
             self.gameState = bot.gameState
             self.playerCards = bot.playerCards
             self.tableCards = bot.tableCards
