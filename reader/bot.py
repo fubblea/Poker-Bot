@@ -63,9 +63,8 @@ class MultiBot:
             self.bot_dict[img.tableName] = [bot, changesHandler]
     
     def run(self):
-        while 1:
-            screenshots = tools.grabScreen(self.gameWindows)
-            for img in screenshots:
-                bot, changesHandler = self.bot_dict[img.tableName]
-                bot.readData(img)
-                changesHandler.check(bot)
+        screenshots = tools.grabScreen(self.gameWindows)
+        for img in screenshots:
+            bot, changesHandler = self.bot_dict[img.tableName]
+            bot.readData(img)
+            changesHandler.check(bot)
