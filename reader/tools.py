@@ -10,6 +10,23 @@ from ctypes import windll
 import reader.settings as settings
 import reader.models as models
 
+def readPotSize(filename: str) -> str:
+    pot_size = 0
+
+    pot = [300, 400, 235, 250]
+    
+    image = cv2.imread(filename)
+    pot = image[pot[2]:pot[3], pot[0]:pot[1]]
+
+    cv2.imwrite('pot.png', pot)
+
+    if emptyCard(pot):
+        pass
+    else:
+        pot_size = pytesseract.image_to_string(image, config=settings.config_single_line).replace("\f", "").replace("\n", "").replace("\r", "").replace(" ", "")
+    
+    return pot_size
+
 def readPlayerCards(filename: str) -> list:
     cards = []
 

@@ -9,6 +9,7 @@ class PokerBot:
     gameState = ""
     playerCards = []
     tableCards = []
+    potSize = 0
     # tableName = ""
 
     def checkGameState(self) -> str:
@@ -25,6 +26,7 @@ class PokerBot:
         self.tableCards = tools.readTableCards(screenshot.filename)
         self.playerCards = tools.readPlayerCards(screenshot.filename)
         self.gameState = self.checkGameState()
+        self.potSize = tools.readPotSize(screenshot.filename)
 
         
 
@@ -34,6 +36,7 @@ class ChangesHandler:
         self.gameState = bot.gameState
         self.playerCards = bot.playerCards
         self.tableCards = bot.tableCards
+        self.potSize = bot.potSize
         self.tableName = tableName
     
     def check(self, bot: PokerBot):
@@ -41,6 +44,7 @@ class ChangesHandler:
             self.gameState = bot.gameState
             self.playerCards = bot.playerCards
             self.tableCards = bot.tableCards
+            self.potSize = bot.potSize
 
             self.printData()
 
@@ -49,6 +53,7 @@ class ChangesHandler:
         print (f'Player cards: {self.playerCards}')
         print (f'Cards on table: {self.tableCards}')
         print (f'Game state: {self.gameState}')
+        print(f'Pot Size: {self.potSize}')
         print (f'Table: {self.tableName}')
         print(f'Strategy: {strats.simulate_all_possible(self)}')
         print ("########################")
