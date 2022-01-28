@@ -2,13 +2,13 @@ import enum
 import os
 
 class Colors(enum.Enum):
-    Hearts = "H"
-    Tiles = "T"
-    Clovers = "C"
-    Pikes = "P"
+    Hearts = "h"
+    Tiles = "d"
+    Clovers = "c"
+    Pikes = "s"
 
     # TODO Fix detection of hearts
-    Error = "H"
+    Error = "h"
 
 class Card:
     def __init__(self, value: str, color: Colors):
@@ -16,11 +16,11 @@ class Card:
         self.color = color
     
     def __str__(self):
-        return self.color.value + self.value
+        return self.value + self.color.value
 
     # seems like printing lists requires that one
     def __repr__(self):
-        return self.color.value + self.value
+        return self.value + self.color.value
 
     def __eq__(self, other):
         return self.value == other.value and self.color == other.color

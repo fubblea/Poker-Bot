@@ -3,6 +3,7 @@ import reader.models as models
 import os
 import cv2
 import threading
+import strats
 
 class PokerBot:
     gameState = ""
@@ -49,6 +50,7 @@ class ChangesHandler:
         print (f'Cards on table: {self.tableCards}')
         print (f'Game state: {self.gameState}')
         print (f'Table: {self.tableName}')
+        print(f'Strategy: {strats.simulate_all_possible(self)}')
         print ("########################")
 
 
