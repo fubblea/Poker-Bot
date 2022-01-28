@@ -28,7 +28,6 @@ def readPlayerCards(filename: str) -> list:
 
     # if card not on table yet
     if emptyCard(card2):
-        print("empty")
         pass
     else:
         cards.append(cardInfo(card1))
@@ -192,7 +191,8 @@ def __getCardValue(image) -> str:
             elif '10' in card:
                 return card[:2]
         except:
-            return "?"
+            # TODO Fix detection of Queens
+            return "Q"
     return "X"
 
 def __getCardColor(image) -> models.Colors:

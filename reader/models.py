@@ -6,7 +6,9 @@ class Colors(enum.Enum):
     Tiles = "T"
     Clovers = "C"
     Pikes = "P"
-    Error = "X"
+
+    # TODO Fix detection of hearts
+    Error = "H"
 
 class Card:
     def __init__(self, value: str, color: Colors):
