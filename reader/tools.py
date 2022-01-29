@@ -18,12 +18,10 @@ def readPotSize(filename: str) -> str:
     image = cv2.imread(filename)
     pot = image[pot[2]:pot[3], pot[0]:pot[1]]
 
-    cv2.imwrite('pot.png', pot)
+    # cv2.imwrite('pot.png', pot)
 
     pot_size = pytesseract.image_to_string(
         cv2.cvtColor(pot, cv2.COLOR_BGR2GRAY)).replace("\f", "").replace("\n", "").replace("\r", "").replace(" ", "").replace(":", "")
-
-    # print(pot_size)
     
     return pot_size
 
