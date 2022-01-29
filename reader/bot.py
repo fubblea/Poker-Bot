@@ -10,6 +10,7 @@ class PokerBot:
     playerCards = []
     tableCards = []
     potSize = 0
+    options = [0, 0]
     # tableName = ""
 
     def checkGameState(self) -> str:
@@ -27,6 +28,7 @@ class PokerBot:
         self.playerCards = tools.readPlayerCards(screenshot.filename)
         self.gameState = self.checkGameState()
         self.potSize = tools.readPotSize(screenshot.filename)
+        self.options = tools.readOptions(screenshot.filename)
 
         
 
@@ -37,25 +39,27 @@ class ChangesHandler:
         self.playerCards = bot.playerCards
         self.tableCards = bot.tableCards
         self.potSize = bot.potSize
+        self.options = bot.options
         self.tableName = tableName
     
     def check(self, bot: PokerBot):
-        if self.gameState != bot.gameState or self.playerCards != bot.playerCards or self.tableCards != bot.tableCards or self.potSize != bot.potSize:
+        if self.gameState != bot.gameState or self.playerCards != bot.playerCards or self.tableCards != bot.tableCards or self.options != bot.options:
             self.gameState = bot.gameState
             self.playerCards = bot.playerCards
             self.tableCards = bot.tableCards
             self.potSize = bot.potSize
-
-            self.printData()
+            
+            self.options = bot.options
+            self.printData(strat=strats.calculate_ev(self))
 
         
-    def printData(self):
+    def printData(self, strat):
         print (f'Player cards: {self.playerCards}')
         print (f'Cards on table: {self.tableCards}')
         print (f'Game state: {self.gameState}')
         print(f'Pot Size: {self.potSize}')
         print (f'Table: {self.tableName}')
-        print(f'Strategy: {strats.simulate_all_possible(self)}')
+        print(f'Strategy: {strat}')
         print ("########################")
 
 

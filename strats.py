@@ -29,4 +29,8 @@ def simulate_all_possible(bot):
         probabilities = {"Tie" : probabilities[0], "Win": probabilities[1], "Lose" : probabilities[2]}
 
         return probabilities
-    
+
+def calculate_ev(bot):
+    # monte_carlo_probabilities = simulate_all_possible(bot)
+
+    return bot.options
