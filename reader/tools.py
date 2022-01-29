@@ -21,7 +21,7 @@ def readOptions(filename: str) -> list:
     # cv2.imwrite('options.png', options)
 
     options_value = pytesseract.image_to_string(
-        cv2.cvtColor(options, cv2.COLOR_BGR2GRAY))
+        cv2.cvtColor(options, cv2.COLOR_BGR2GRAY)).replace('\n', "")
     
     return options_value
 
@@ -36,11 +36,11 @@ def readPotSize(filename: str) -> str:
     # cv2.imwrite('pot.png', pot)
 
     pot_size = pytesseract.image_to_string(
-        cv2.cvtColor(pot, cv2.COLOR_BGR2GRAY))
+        cv2.cvtColor(pot, cv2.COLOR_BGR2GRAY)).replace('\n', "")
     
     for char in pot_size:
-        if char not in ['123456789']:
-            pot_size.replace(char, "")
+        if not char.isdigit():
+            pot_size = pot_size.replace(char, "")
 
     return pot_size
 

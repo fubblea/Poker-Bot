@@ -43,23 +43,23 @@ class ChangesHandler:
         self.tableName = tableName
     
     def check(self, bot: PokerBot):
-        if self.gameState != bot.gameState or self.playerCards != bot.playerCards or self.tableCards != bot.tableCards or self.options != bot.options:
+        if self.gameState != bot.gameState or self.playerCards != bot.playerCards or self.tableCards != bot.tableCards or self.potSize != bot.potSize:
             self.gameState = bot.gameState
             self.playerCards = bot.playerCards
             self.tableCards = bot.tableCards
             self.potSize = bot.potSize
             
             self.options = bot.options
-            self.printData(strat=strats.calculate_ev(self))
+            self.printData()
 
         
-    def printData(self, strat):
+    def printData(self):
         print (f'Player cards: {self.playerCards}')
         print (f'Cards on table: {self.tableCards}')
         print (f'Game state: {self.gameState}')
         print(f'Pot Size: {self.potSize}')
         print (f'Table: {self.tableName}')
-        print(f'Strategy: {strat}')
+        print(f'Strategy: {strats.calculate_ev(self)}')
         print ("########################")
 
 
