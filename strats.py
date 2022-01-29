@@ -18,7 +18,7 @@ def simulate_all_possible(bot):
     else:
         probabilities = holdem_calc.calculate_odds_villan(
             board=board_cards,
-            exact=True,
+            exact=False,
             num = 1,
             input_file= None,
             hero_cards=hole_cards,
@@ -29,4 +29,16 @@ def simulate_all_possible(bot):
         probabilities = {"Tie" : probabilities[0], "Win": probabilities[1], "Lose" : probabilities[2]}
 
         return probabilities
-    
+
+def calculate_ev(bot):
+    monte_carlo_probabilities = simulate_all_possible(bot)
+
+    if type(monte_carlo_probabilities) == dict:
+        call = (float(monte_carlo_probabilities['Lose'])) / (float(monte_carlo_probabilities['Win']) * float(bot.potSize))
+        
+        if int(call) > 0:
+            return f"Call/Raise over {call}"
+        else:
+            return "Check/Fold"
+    else:
+        return monte_carlo_probabilities

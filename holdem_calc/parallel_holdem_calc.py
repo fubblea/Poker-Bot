@@ -1,7 +1,7 @@
 import multiprocessing
 import time
-import holdem_argparser
-import holdem_functions
+import holdem_calc.holdem_argparser as holdem_argparser
+import holdem_calc.holdem_functions as holdem_functions
 
 
 def main():
@@ -175,7 +175,7 @@ def simulation(remaining_board):
     for index, result in enumerate(result_list):
         result_histograms[len(holdem_functions.hand_rankings) *
                           (proc_id * num_players + index) + result[0]] += 1
-
+    
 if __name__ == '__main__':
     start = time.time()
     main()

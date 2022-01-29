@@ -10,6 +10,21 @@ from ctypes import windll
 import reader.settings as settings
 import reader.models as models
 
+def readOptions(filename: str) -> list:
+    options_value = [0, 0] # Call and raise respectively
+
+    options = [320, 630, 490, 530]
+    
+    image = cv2.imread(filename)
+    options = image[options[2]:options[3], options[0]:options[1]]
+
+    # cv2.imwrite('options.png', options)
+
+    options_value = pytesseract.image_to_string(
+        cv2.cvtColor(options, cv2.COLOR_BGR2GRAY)).replace('\n', "")
+    
+    return options_value
+
 def readPotSize(filename: str) -> str:
     pot_size = 0
 
@@ -21,8 +36,12 @@ def readPotSize(filename: str) -> str:
     # cv2.imwrite('pot.png', pot)
 
     pot_size = pytesseract.image_to_string(
-        cv2.cvtColor(pot, cv2.COLOR_BGR2GRAY)).replace("\f", "").replace("\n", "").replace("\r", "").replace(" ", "").replace(":", "")
+        cv2.cvtColor(pot, cv2.COLOR_BGR2GRAY)).replace('\n', "")
     
+    for char in pot_size:
+        if not char.isdigit():
+            pot_size = pot_size.replace(char, "")
+
     return pot_size
 
 def readPlayerCards(filename: str) -> list:
